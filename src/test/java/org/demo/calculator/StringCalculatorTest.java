@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StringCalculatorTest {
     private StringCalculator stringCalculator;
@@ -17,5 +18,11 @@ class StringCalculatorTest {
     void addNumbersSeparatedByComma() {
         String numbers = "10,20,30";
         assertEquals(60, stringCalculator.add(numbers));
+    }
+
+    @Test
+    void addNumbersSeparatedByCommaAndContainInvalidCharacter() {
+        String numbers = "10,20,x";
+        assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(numbers));
     }
 }
