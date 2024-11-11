@@ -25,4 +25,13 @@ class StringCalculatorTest {
         String numbers = "10,20,x";
         assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(numbers));
     }
+
+    @Test
+    void addNumbersSeparatedByCommaAndNewLine() {
+        String numbers = "10,20\n30";
+        assertEquals(60, stringCalculator.add(numbers));
+
+        numbers = "10\n20,30";
+        assertEquals(60, stringCalculator.add(numbers));
+    }
 }

@@ -2,7 +2,15 @@ package org.demo.calculator;
 
 public class StringCalculator {
     int add(String numbers) {
-        String[] parsedNumbers = numbers.split(",");
+        if (numbers.isEmpty()) {
+            return 0;
+        }
+
+        // Default delimiters: comma or newline
+        String delimiter = "[,\n" +
+                           "]";
+
+        String[] parsedNumbers = numbers.split(delimiter);
         int sum = 0;
         for (String num : parsedNumbers) {
             try {
