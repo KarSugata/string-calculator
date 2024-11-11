@@ -34,4 +34,10 @@ class StringCalculatorTest {
         numbers = "10\n20,30";
         assertEquals(60, stringCalculator.add(numbers));
     }
+
+    @Test
+    void addNumbersSeparatedByCustomDelimiter() {
+        String numbers = "//;\n10;20;30";
+        assertEquals(60, stringCalculator.add(numbers));
+    }
 }

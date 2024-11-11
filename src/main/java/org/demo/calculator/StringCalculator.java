@@ -1,5 +1,8 @@
 package org.demo.calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
     int add(String numbers) {
         if (numbers.isEmpty()) {
@@ -9,6 +12,15 @@ public class StringCalculator {
         // Default delimiters: comma or newline
         String delimiter = "[,\n" +
                            "]";
+
+        // Check for a custom delimiter in the format "//[delimiter]\n"
+        if (numbers.startsWith("//")) {
+            Matcher matcher = Pattern.compile("//(.+)\n").matcher(numbers);
+            if (matcher.find()) {
+                delimiter = Pattern.quote(matcher.group(1)); // Escape delimiter for special characters
+                numbers = numbers.substring(matcher.end());
+            }
+        }
 
         String[] parsedNumbers = numbers.split(delimiter);
         int sum = 0;
