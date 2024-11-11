@@ -5,7 +5,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The below class consists of a single method add(String numbers)
+ * which is capable of adding numbers and returning the value
+ */
 public class StringCalculator {
+
     int add(String numbers) {
         if (numbers.isEmpty()) {
             return 0;

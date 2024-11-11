@@ -47,4 +47,17 @@ class StringCalculatorTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(numbers));
         assertEquals("Negatives not allowed: [-20, -40]\n", exception.getMessage());
     }
+
+    @Test
+    void addEmptyString() {
+        String numbers = "";
+        assertEquals(0, stringCalculator.add(numbers));
+    }
+
+    @Test
+    void addPositiveNegativeNumbers() {
+        String numbers = "10,-20,30,40";
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(numbers));
+        assertEquals("Negatives not allowed: [-20]\n", exception.getMessage());
+    }
 }
