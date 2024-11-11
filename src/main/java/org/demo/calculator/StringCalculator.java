@@ -1,5 +1,7 @@
 package org.demo.calculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,13 +25,25 @@ public class StringCalculator {
         }
 
         String[] parsedNumbers = numbers.split(delimiter);
+        List<Integer> negatives = new ArrayList<>();
         int sum = 0;
+
         for (String num : parsedNumbers) {
             try {
-                sum += Integer.parseInt(num);
+                int parsedInt = Integer.parseInt(num);
+                if (parsedInt < 0) {
+                    negatives.add(parsedInt);
+                } else {
+                    sum += parsedInt;
+                }
+
             } catch (NumberFormatException exception) {
                 throw new IllegalArgumentException(String.format("The given input string: %s is not a number%n", num));
             }
+        }
+
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException(String.format("Negatives not allowed: %s%n", negatives));
         }
         return sum;
     }

@@ -40,4 +40,11 @@ class StringCalculatorTest {
         String numbers = "//;\n10;20;30";
         assertEquals(60, stringCalculator.add(numbers));
     }
+
+    @Test
+    void addNegativeNumbers() {
+        String numbers = "10,-20,30,-40";
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(numbers));
+        assertEquals("Negatives not allowed: [-20, -40]\n", exception.getMessage());
+    }
 }
