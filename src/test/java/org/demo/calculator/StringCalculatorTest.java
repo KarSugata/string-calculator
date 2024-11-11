@@ -3,6 +3,8 @@ package org.demo.calculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class StringCalculatorTest {
     private StringCalculator stringCalculator;
 
@@ -12,7 +14,8 @@ class StringCalculatorTest {
     }
 
     @Test
-    void testMethod() {
-        System.out.println(stringCalculator.add(""));
+    void addNumbersSeparatedByComma() {
+        String numbers = "10,20,30";
+        assertEquals(60, stringCalculator.add(numbers));
     }
 }
